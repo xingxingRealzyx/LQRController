@@ -17,7 +17,7 @@ int main() {
 
     // 创建LQR控制器
     control::LQRController<double> lqr(A, B, Q, R, S);
-
+    std::cout << "反馈矩阵：\n" << lqr.get_gain() << std::endl;
     // 初始状态
     linalg::Matrix<double> x({{1.0}});
     
