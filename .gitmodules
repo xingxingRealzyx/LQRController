@@ -1,0 +1,3 @@
+[submodule "3rdparty/NanoMatrix"]
+	path = 3rdparty/NanoMatrix
+	url = git@github.com:xingxingRealzyx/NanoMatrix.git
