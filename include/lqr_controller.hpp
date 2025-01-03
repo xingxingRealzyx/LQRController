@@ -33,7 +33,7 @@ private:
 
 public:
     /**
-     * @brief 构造函数
+     * @brief 使用系统参数构造LQR控制器
      * @param A_in 系统矩阵
      * @param B_in 输入矩阵
      * @param Q_in 状态权重矩阵
@@ -51,18 +51,19 @@ public:
     }
 
     /**
+     * @brief 使用反馈矩阵直接构造LQR控制器
+     * @param F_in 反馈增益矩阵
+     */
+    explicit LQRController(const linalg::Matrix<T>& F_in)
+        : F(F_in) {}
+
+    /**
      * @brief 计算控制输入
      * @param x 当前状态
      * @return 计算得到的控制输入
      */
     linalg::Matrix<T> compute_input(const linalg::Matrix<T>& x) {
-        linalg::Matrix<T> result = F * x;
-        for(size_t i = 0; i < result.get_rows(); ++i) {
-            for(size_t j = 0; j < result.get_cols(); ++j) {
-                result(i,j) *= T(-1);
-            }
-        }
-        return result;
+        return F * x * T(-1);  // 使用标量乘法
     }
 
     /**

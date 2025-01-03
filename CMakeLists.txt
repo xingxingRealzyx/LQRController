@@ -15,11 +15,6 @@ include_directories(
 # 构建测试程序
 add_executable(test_lqr test_lqr.cpp)
 
-# 如果有第三方依赖（比如线性代数库），需要在这里添加
-# 例如：
-# find_package(Eigen3 REQUIRED)
-# target_link_libraries(test_lqr Eigen3::Eigen)
-
 # 设置编译选项
 target_compile_options(test_lqr PRIVATE 
     $<$<CXX_COMPILER_ID:GNU>:-Wall -Wextra -Wpedantic>
